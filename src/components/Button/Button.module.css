@@ -1,0 +1,42 @@
+.button {
+  border-radius: 1rem;
+  cursor: pointer;
+  background-color: #e8e8e4;
+  border: none;
+  padding: 1rem;
+}
+
+.active {
+  background-color: #ddbea9;
+}
+
+.stringNumber {
+  color: #ddbea9;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.note {
+  color: #cb997e;
+  font-size: 1rem;
+}
+
+.button:hover {
+  background-color: #ddbea9;
+}
+
+.button:hover > .stringNumber {
+  color: white;
+}
+
+.button:hover > .note {
+  color: #c35f20;
+}
+
+.active > .stringNumber {
+  color: white;
+}
+
+.active > .note {
+  color: #c35f20;
+}

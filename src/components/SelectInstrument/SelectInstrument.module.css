@@ -1,0 +1,16 @@
+.instrument-container {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  margin-right: 1rem;
+}
+
+.select {
+  padding: 0.25rem 1rem;
+  border-radius: 8px;
+  border: none;
+}

@@ -4,6 +4,9 @@ import getStringOrdinalFromNumber from "../../utils/getStringOrdinalFromNumber";
 import audioFile from "../../assets/sounds/test2.mp3";
 import audioFile2 from "../../assets/sounds/test1.wav";
 
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import PauseIcon from "@mui/icons-material/Pause";
+
 const E4 = new Audio(audioFile);
 const B3 = new Audio(audioFile2);
 
@@ -29,8 +32,37 @@ function Button({ stringNumber, note }) {
   }
 
   return (
-    <div>
-      <button
+    <div className={styles.stringContainer}>
+      <div className={styles.stringSet}>
+        <p className={styles.stringNumber}>
+          {getStringOrdinalFromNumber(stringNumber)} string {note}
+        </p>
+        <div className={styles.string}></div>
+      </div>
+      {isPlaying ? (
+        <PauseIcon
+          className={styles.button}
+          onClick={() => {
+            if (isPlaying) {
+              stopSound();
+            } else {
+              playSound();
+            }
+          }}
+        ></PauseIcon>
+      ) : (
+        <PlayArrowIcon
+          className={styles.button}
+          onClick={() => {
+            if (isPlaying) {
+              stopSound();
+            } else {
+              playSound();
+            }
+          }}
+        ></PlayArrowIcon>
+      )}
+      {/* <button
         className={`${styles.button} ${isPlaying ? styles.active : ""}`}
         onClick={() => {
           if (isPlaying) {
@@ -39,12 +71,9 @@ function Button({ stringNumber, note }) {
             playSound();
           }
         }}
-      >
-        <p className={styles.stringNumber}>
-          {getStringOrdinalFromNumber(stringNumber)} string
-        </p>
-        <p className={styles.note}>{note}</p>
-      </button>
+      > */}
+      {/* <p className={styles.note}>{note}</p> */}
+      {/* </button> */}
     </div>
   );
 }

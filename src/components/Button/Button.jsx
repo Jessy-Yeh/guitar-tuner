@@ -4,6 +4,8 @@ import getStringOrdinalFromNumber from "../../utils/getStringOrdinalFromNumber";
 import audioFile from "../../assets/sounds/test2.mp3";
 import audioFile2 from "../../assets/sounds/test1.wav";
 
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+
 const E4 = new Audio(audioFile);
 const B3 = new Audio(audioFile2);
 
@@ -29,7 +31,14 @@ function Button({ stringNumber, note }) {
   }
 
   return (
-    <div>
+    <div className={styles.stringContainer}>
+      <div className={styles.stringSet}>
+        <p className={styles.stringNumber}>
+          {getStringOrdinalFromNumber(stringNumber)} string {note}
+        </p>
+        <div className={styles.string}></div>
+      </div>
+      <PlayArrowIcon></PlayArrowIcon>
       <button
         className={`${styles.button} ${isPlaying ? styles.active : ""}`}
         onClick={() => {
@@ -40,10 +49,7 @@ function Button({ stringNumber, note }) {
           }
         }}
       >
-        <p className={styles.stringNumber}>
-          {getStringOrdinalFromNumber(stringNumber)} string
-        </p>
-        <p className={styles.note}>{note}</p>
+        {/* <p className={styles.note}>{note}</p> */}
       </button>
     </div>
   );

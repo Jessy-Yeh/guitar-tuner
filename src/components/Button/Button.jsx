@@ -13,7 +13,7 @@ const B3 = new Audio(audioFile2);
 function Button({ stringNumber, note }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const audioList = [E4, B3];
+  const audioList = [E4, B3, E4, B3, E4, B3];
   const audioIndex = Number(stringNumber) - 1;
   const audio = audioList[audioIndex];
 
@@ -31,35 +31,35 @@ function Button({ stringNumber, note }) {
     setIsPlaying(false);
   }
 
+  function playAndStopSound() {
+    if (isPlaying) {
+      stopSound();
+    } else {
+      playSound();
+    }
+  }
+
   return (
     <div className={styles.stringContainer}>
       <div className={styles.stringSet}>
         <p className={styles.stringNumber}>
           {getStringOrdinalFromNumber(stringNumber)} string {note}
         </p>
-        <div className={styles.string}></div>
+        <div
+          role="button"
+          className={styles.string}
+          onClick={playAndStopSound}
+        ></div>
       </div>
       {isPlaying ? (
         <PauseIcon
           className={styles.button}
-          onClick={() => {
-            if (isPlaying) {
-              stopSound();
-            } else {
-              playSound();
-            }
-          }}
+          onClick={playAndStopSound}
         ></PauseIcon>
       ) : (
         <PlayArrowIcon
           className={styles.button}
-          onClick={() => {
-            if (isPlaying) {
-              stopSound();
-            } else {
-              playSound();
-            }
-          }}
+          onClick={playAndStopSound}
         ></PlayArrowIcon>
       )}
       {/* <button

@@ -53,8 +53,9 @@
 
 .string {
   width: 80vw;
-  height: 3px;
+  height: 5px;
   background-color: #5c5048;
+  cursor: pointer;
 }
 
 .stringContainer {

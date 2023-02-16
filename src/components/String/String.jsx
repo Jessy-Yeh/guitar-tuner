@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Button.module.css";
+import styles from "./String.module.css";
 import getStringOrdinalFromNumber from "../../utils/getStringOrdinalFromNumber";
 import audioFile from "../../assets/sounds/test2.mp3";
 import audioFile2 from "../../assets/sounds/test1.wav";
@@ -10,7 +10,7 @@ import PauseIcon from "@mui/icons-material/Pause";
 const E4 = new Audio(audioFile);
 const B3 = new Audio(audioFile2);
 
-function Button({ stringNumber, note }) {
+function String({ stringNumber, note }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const audioList = [E4, B3, E4, B3, E4, B3];
@@ -40,27 +40,23 @@ function Button({ stringNumber, note }) {
   }
 
   return (
-    <div className={styles.stringContainer}>
+    <button className={styles.stringContainer} onClick={playAndStopSound}>
       <div className={styles.stringSet}>
         <p className={styles.stringNumber}>
-          {getStringOrdinalFromNumber(stringNumber)} string {note}
+          {getStringOrdinalFromNumber(stringNumber)} string{" "}
+          <span className={styles.note}>{note}</span>
         </p>
         <div
           role="button"
-          className={styles.string}
-          onClick={playAndStopSound}
+          className={`${styles.string} ${isPlaying ? styles.activeString : ""}`}
         ></div>
       </div>
       {isPlaying ? (
         <PauseIcon
-          className={styles.button}
-          onClick={playAndStopSound}
+          className={`${styles.button} ${styles.activeButton}`}
         ></PauseIcon>
       ) : (
-        <PlayArrowIcon
-          className={styles.button}
-          onClick={playAndStopSound}
-        ></PlayArrowIcon>
+        <PlayArrowIcon className={styles.button}></PlayArrowIcon>
       )}
       {/* <button
         className={`${styles.button} ${isPlaying ? styles.active : ""}`}
@@ -74,8 +70,8 @@ function Button({ stringNumber, note }) {
       > */}
       {/* <p className={styles.note}>{note}</p> */}
       {/* </button> */}
-    </div>
+    </button>
   );
 }
 
-export default Button;
+export default String;

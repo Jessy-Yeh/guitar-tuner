@@ -40,37 +40,28 @@ function String({ stringNumber, note }) {
   }
 
   return (
-    <button className={styles.stringContainer} onClick={playAndStopSound}>
-      <div className={styles.stringSet}>
-        <p className={styles.stringNumber}>
-          {getStringOrdinalFromNumber(stringNumber)} string{" "}
-          <span className={styles.note}>{note}</span>
-        </p>
-        <div
-          role="button"
-          className={`${styles.string} ${isPlaying ? styles.activeString : ""}`}
-        ></div>
-      </div>
-      {isPlaying ? (
-        <PauseIcon
-          className={`${styles.button} ${styles.activeButton}`}
-        ></PauseIcon>
-      ) : (
-        <PlayArrowIcon className={styles.button}></PlayArrowIcon>
-      )}
-      {/* <button
-        className={`${styles.button} ${isPlaying ? styles.active : ""}`}
-        onClick={() => {
-          if (isPlaying) {
-            stopSound();
-          } else {
-            playSound();
-          }
-        }}
-      > */}
-      {/* <p className={styles.note}>{note}</p> */}
-      {/* </button> */}
-    </button>
+    <li>
+      <button className={styles.stringContainer} onClick={playAndStopSound}>
+        <div className={styles.stringSet}>
+          <p className={styles.stringNumber}>
+            {getStringOrdinalFromNumber(stringNumber)} string{" "}
+            <span className={styles.note}>{note}</span>
+          </p>
+          <div
+            className={`${styles.string} ${
+              isPlaying ? styles.activeString : ""
+            }`}
+          ></div>
+        </div>
+        {isPlaying ? (
+          <PauseIcon
+            className={`${styles.playPauseButton} ${styles.playButton}`}
+          ></PauseIcon>
+        ) : (
+          <PlayArrowIcon className={styles.playPauseButton}></PlayArrowIcon>
+        )}
+      </button>
+    </li>
   );
 }
 

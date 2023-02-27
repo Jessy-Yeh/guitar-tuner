@@ -7,14 +7,14 @@ function App() {
     <div className="App">
       <h1 className="header">The Best Guitar Tuner</h1>
       <SelectInstrument />
-      <div className="string-container">
+      <ol className="stringGroup">
         <String stringNumber="1" note="E4" />
         <String stringNumber="2" note="B3" />
         <String stringNumber="3" note="G3" />
         <String stringNumber="4" note="D3" />
         <String stringNumber="5" note="A2" />
         <String stringNumber="6" note="E2" />
-      </div>
+      </ol>
     </div>
   );
 }

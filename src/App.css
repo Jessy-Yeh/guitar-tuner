@@ -25,7 +25,7 @@
   color: #8d99ae;
 }
 
-.string-container {
+.stringGroup {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -33,6 +33,10 @@
   margin-top: 3rem;
   padding: 2rem 0 3rem;
   background-color: rgb(243, 243, 243, 0.5);
+}
+
+.stringGroup li {
+  list-style-type: none;
 }
 
 /* .App-link {

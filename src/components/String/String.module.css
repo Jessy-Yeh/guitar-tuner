@@ -1,0 +1,55 @@
+.playPauseButton {
+  cursor: pointer;
+  transform: scale(3);
+  margin-top: 1.65rem;
+  color: #504d48;
+}
+
+.string {
+  width: 80vw;
+  height: 5px;
+  background-color: #504d48;
+  cursor: pointer;
+}
+
+.activeString {
+  background-color: #a2d2ff;
+}
+
+.playButton {
+  color: #a2d2ff;
+}
+
+.stringNumber {
+  color: #8d99ae;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.note {
+  color: #504d48;
+  font-size: 1rem;
+}
+
+.stringContainer {
+  display: flex;
+  align-items: center;
+  background: none;
+  cursor: pointer;
+  border: none;
+}
+
+.stringContainer:hover .playPauseButton {
+  color: #a2d2ff;
+}
+
+.stringContainer:hover .string {
+  background-color: #a2d2ff;
+}
+
+.stringSet {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}

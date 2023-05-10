@@ -1,4 +1,4 @@
-.button {
+.playPauseButton {
   cursor: pointer;
   transform: scale(3);
   margin-top: 1.65rem;
@@ -16,7 +16,7 @@
   background-color: #a2d2ff;
 }
 
-.activeButton {
+.playButton {
   color: #a2d2ff;
 }
 
@@ -39,7 +39,7 @@
   border: none;
 }
 
-.stringContainer:hover .button {
+.stringContainer:hover .playPauseButton {
   color: #a2d2ff;
 }
 

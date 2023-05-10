@@ -1,34 +1,38 @@
 import { useState } from "react";
 import styles from "./String.module.css";
 import getStringOrdinalFromNumber from "../../utils/getStringOrdinalFromNumber";
-import audioFile from "../../assets/sounds/test2.mp3";
-import audioFile2 from "../../assets/sounds/test1.wav";
+import getFrequency from "../../utils/getFrequency";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
-const E4 = new Audio(audioFile);
-const B3 = new Audio(audioFile2);
+const context = new AudioContext();
+// const gainNode = context.createGain();
+let oscillator = null;
+
+const play = (frequency = 300, duration = 1e3) => {
+  oscillator = context.createOscillator();
+  oscillator.frequency.value = frequency;
+  // oscillator.connect(gainNode);
+  oscillator.connect(context.destination);
+  oscillator.start();
+};
 
 function String({ stringNumber, note }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
-  const audioList = [E4, B3, E4, B3, E4, B3];
-  const audioIndex = Number(stringNumber) - 1;
-  const audio = audioList[audioIndex];
-
-  function playSound() {
-    audio.play();
-    setIsPlaying(true);
-
-    audio.onended = () => {
-      setIsPlaying(false);
-    };
-  }
+  const frequency = getFrequency(note);
 
   function stopSound() {
-    audio.pause();
+    if (oscillator) oscillator.stop();
+    oscillator = null;
     setIsPlaying(false);
+  }
+
+  function playSound() {
+    stopSound();
+    play(frequency, 1e3);
+    setIsPlaying(true);
   }
 
   function playAndStopSound() {
@@ -47,29 +51,16 @@ function String({ stringNumber, note }) {
           <span className={styles.note}>{note}</span>
         </p>
         <div
-          role="button"
           className={`${styles.string} ${isPlaying ? styles.activeString : ""}`}
         ></div>
       </div>
       {isPlaying ? (
         <PauseIcon
-          className={`${styles.button} ${styles.activeButton}`}
+          className={`${styles.playPauseButton} ${styles.playButton}`}
         ></PauseIcon>
       ) : (
-        <PlayArrowIcon className={styles.button}></PlayArrowIcon>
+        <PlayArrowIcon className={styles.playPauseButton}></PlayArrowIcon>
       )}
-      {/* <button
-        className={`${styles.button} ${isPlaying ? styles.active : ""}`}
-        onClick={() => {
-          if (isPlaying) {
-            stopSound();
-          } else {
-            playSound();
-          }
-        }}
-      > */}
-      {/* <p className={styles.note}>{note}</p> */}
-      {/* </button> */}
     </button>
   );
 }

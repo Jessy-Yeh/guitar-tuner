@@ -60,9 +60,9 @@ function String({ stringNumber, note }) {
         {isPlaying ? (
           <PauseIcon
             className={`${styles.playPauseButton} ${styles.playButton}`}
-          ></PauseIcon>
+          />
         ) : (
-          <PlayArrowIcon className={styles.playPauseButton}></PlayArrowIcon>
+          <PlayArrowIcon className={styles.playPauseButton} />
         )}
       </button>
     </li>

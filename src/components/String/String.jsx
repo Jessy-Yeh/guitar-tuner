@@ -1,50 +1,20 @@
-import { useState } from "react";
 import styles from "./String.module.css";
 import getStringOrdinalFromNumber from "../../utils/getStringOrdinalFromNumber";
-import getFrequency from "../../utils/getFrequency";
 
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
 
-const context = new AudioContext();
-// const gainNode = context.createGain();
-let oscillator = null;
-
-const play = (frequency = 300, duration = 1e3) => {
-  oscillator = context.createOscillator();
-  oscillator.frequency.value = frequency;
-  // oscillator.connect(gainNode);
-  oscillator.connect(context.destination);
-  oscillator.start();
-};
-
-function String({ stringNumber, note }) {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const frequency = getFrequency(note);
-
-  function stopSound() {
-    if (oscillator) oscillator.stop();
-    oscillator = null;
-    setIsPlaying(false);
-  }
-
-  function playSound() {
-    stopSound();
-    play(frequency, 1e3);
-    setIsPlaying(true);
-  }
-
-  function playAndStopSound() {
+function String({ stringNumber, note, playSound, stopSound, isPlaying }) {
+  function toggleSound() {
     if (isPlaying) {
       stopSound();
     } else {
-      playSound();
+      playSound(note);
     }
   }
 
   return (
-    <button className={styles.stringContainer} onClick={playAndStopSound}>
+    <button className={styles.stringContainer} onClick={toggleSound}>
       <div className={styles.stringSet}>
         <p className={styles.stringNumber}>
           {getStringOrdinalFromNumber(stringNumber)} string{" "}
